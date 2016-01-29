@@ -36,21 +36,23 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
 
     public void add(Cheese cheese) {
         mValues.add(cheese);
-        notifyDataSetChanged();
+        notifyItemInserted(mValues.size()-1);
     }
 
     public void removeLast() {
         if (!mValues.isEmpty()) {
-            mValues.remove(mValues.size() - 1);
-            notifyDataSetChanged();
+            int removeIndex = mValues.size() - 1;
+            mValues.remove(removeIndex);
+            notifyItemRemoved(removeIndex);
         }
     }
 
     public void removeMiddle() {
         if (!mValues.isEmpty()) {
-            mValues.remove(mValues.size()/2);
+            int indexRemoved = mValues.size()/2;
+            mValues.remove(indexRemoved);
+            notifyItemRemoved(indexRemoved);
         }
-        notifyDataSetChanged();
     }
 
     @Override

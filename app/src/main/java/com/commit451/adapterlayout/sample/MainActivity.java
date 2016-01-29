@@ -2,10 +2,11 @@ package com.commit451.adapterlayout.sample;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.ViewGroup;
 
 import com.commit451.adapterlayout.AdapterLinearLayout;
 
@@ -15,8 +16,12 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.toolbar) Toolbar mToolbar;
-    @Bind(R.id.adapter_layout) AdapterLinearLayout mAdapterLinearLayout;
+    @Bind(R.id.root)
+    ViewGroup mRoot;
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
+    @Bind(R.id.adapter_layout)
+    AdapterLinearLayout mAdapterLinearLayout;
     CheeseAdapter mAdapter;
 
     @OnClick(R.id.add_cheese)
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private CheeseAdapter.Listener mListener = new CheeseAdapter.Listener() {
         @Override
         public void onItemClicked(Cheese cheese) {
-            Toast.makeText(MainActivity.this, cheese.getName() + " clicked", Toast.LENGTH_SHORT)
+            Snackbar.make(mRoot, cheese.getName() + " clicked", Snackbar.LENGTH_SHORT)
                     .show();
         }
     };
