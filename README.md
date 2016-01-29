@@ -17,7 +17,7 @@ See the sample project for a full sample.
 ```java
 //CheeseAdapter is a RecyclerView adapter
 CheeseAdapter cheeseAdapter = new CheeseAdapter();
-adapterLinearLayout adapterLinearLayout =
+adapterLinearLayout adapterLinearLayout = (AdapterLinearLayout) findViewById(R.id.adapter_linear_layout);
 adapterLinearLayout.setAdapter(cheeseAdapter);
 ```
 Later, when you get your data set:
