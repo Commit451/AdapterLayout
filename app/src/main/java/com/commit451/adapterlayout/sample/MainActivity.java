@@ -30,17 +30,27 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.removeMiddle();
     }
 
+    @OnClick(R.id.new_adapter)
+    void onNewAdapterClicked() {
+        mAdapterLinearLayout.setAdapter(null);
+        mAdapter = new CheeseAdapter(mListener);
+        mAdapterLinearLayout.setAdapter(mAdapter);
+    }
+
+    private CheeseAdapter.Listener mListener = new CheeseAdapter.Listener() {
+        @Override
+        public void onItemClicked(Cheese cheese) {
+            Toast.makeText(MainActivity.this, cheese.getName() + " clicked", Toast.LENGTH_SHORT)
+                    .show();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mAdapter = new CheeseAdapter(this, new CheeseAdapter.Listener() {
-            @Override
-            public void onItemClicked(Cheese cheese) {
-                Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+        mAdapter = new CheeseAdapter(mListener);
         mAdapterLinearLayout.setAdapter(mAdapter);
     }
 }

@@ -1,5 +1,6 @@
 package com.commit451.adapterlayout;
 
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class AdapterLayoutDelegate {
         @Override
         public void onChanged() {
             super.onChanged();
+            //TODO make this smarter so that it will actually remove the proper views
             updateViews();
         }
     };
@@ -45,14 +47,37 @@ public class AdapterLayoutDelegate {
         }
 
         mAdapter = adapter;
-        mAdapter.registerAdapterDataObserver(mObserver);
+        if (mAdapter != null) {
+            mAdapter.registerAdapterDataObserver(mObserver);
+        }
         updateViews();
+    }
+
+    public @Nullable RecyclerView.Adapter getAdapter() {
+        return mAdapter;
+    }
+
+    /**
+     * Return the {@link android.support.v7.widget.RecyclerView.ViewHolder} at the specified position.
+     * @param index the position at which to get the ViewHolder
+     * @return the ViewHolder at the index, or null if none exists
+     */
+    public @Nullable RecyclerView.ViewHolder getViewHolderAt(int index) {
+        View view = mViewGroup.getChildAt(index);
+        if (view == null) {
+            return null;
+        }
+        return (RecyclerView.ViewHolder) view.getTag(R.id.adapter_layout_list_holder);
     }
 
     /**
      * Updates all the views to match the dataset changing
      */
     private void updateViews() {
+        if (mAdapter == null) {
+            mViewGroup.removeAllViews();
+            return;
+        }
         for (int i = 0; i < mAdapter.getItemCount() || i < mViewGroup.getChildCount(); i++) {
 
             //Within the bounds of the dataset

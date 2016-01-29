@@ -1,6 +1,5 @@
 package com.commit451.adapterlayout.sample;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,7 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
         }
     };
 
-    public CheeseAdapter(Context context, Listener listener) {
+    public CheeseAdapter(Listener listener) {
         mListener = listener;
         mValues = new ArrayList<>();
     }
@@ -57,7 +56,7 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
     @Override
     public CheeseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CheeseViewHolder holder = CheeseViewHolder.inflate(parent);
-        //holder.itemView.setOnClickListener(mOnClickListener);
+        holder.itemView.setOnClickListener(mOnClickListener);
         return holder;
     }
 

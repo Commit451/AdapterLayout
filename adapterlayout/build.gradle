@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 23
@@ -21,4 +22,14 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:recyclerview-v7:23.1.1'
+}
+
+// ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+publish {
+    userOrg = 'commit451'
+    groupId = 'com.commit451'
+    artifactId = 'adapterlayout'
+    publishVersion = '1.0.0'
+    desc = 'ViewGroup backed by RecyclerView.Adapter = magic'
+    website = 'https://github.com/Commit451/AdapterLayout'
 }
