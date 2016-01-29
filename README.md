@@ -34,8 +34,12 @@ This library is useful for displaying data sets that are repeating, but do not n
 # But Why RecyclerView Adapter?
 Most developers should be using `RecyclerView` instead of `ListView` and should be familiar with creating a `RecyclerView.Adapter`. `RecyclerView.Adapter` also enforces the use of `ViewHolder`s which is better for performance. RecyclerView's adapter also allows for better responses to data structure changes via `notifyItemInserted`, `notifyItemRemoved` etc.
 
+# Currently Created AdapterLayouts
+- AdapterLinearLayout
+- AdapterFlowLayout (currently in the sample app, can be copied out)
+
 # Creating Your Own AdapterLayout
-It is simple to create your own `ViewGroup` backed by a `RecyclerView.Adapter`. See `AdapterLinearLayout` and `AdapterLayoutDelegate` for an example of how to create one.
+It is simple to create your own `ViewGroup` backed by a `RecyclerView.Adapter`. See `AdapterFlowLayout` in the sample app and `AdapterLayoutDelegate` in the library for an example of how to create one.
 
 License
 --------
