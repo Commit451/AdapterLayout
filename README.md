@@ -6,18 +6,26 @@ ViewGroup backed by RecyclerView.Adapter = magic
 # Gradle Dependency
 Easily reference the library in your Android projects using this dependency in your module's `build.gradle` file:
 
-```Gradle
-dependencies {
-    compile 'com.commit451:adapterlayout:1.0.0'
-}
-```
+Add it in your root build.gradle at the end of repositories:
+
+	allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
+	}
+Step 2. Add the dependency
+
+	dependencies {
+	        compile 'com.github.Commit451:AdapterLayout:1.0.0'
+	}
 
 # Usage
 See the sample project for a full sample.
 ```java
 //CheeseAdapter is a RecyclerView adapter
 CheeseAdapter cheeseAdapter = new CheeseAdapter();
-adapterLinearLayout adapterLinearLayout =
+adapterLinearLayout adapterLinearLayout = (AdapterLinearLayout) findViewById(R.id.adapter_linear_layout);
 adapterLinearLayout.setAdapter(cheeseAdapter);
 ```
 Later, when you get your data set:
