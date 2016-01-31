@@ -29,7 +29,7 @@ publish {
     userOrg = 'commit451'
     groupId = 'com.commit451'
     artifactId = 'adapterlayout'
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     desc = 'ViewGroup backed by RecyclerView.Adapter = magic'
     website = 'https://github.com/Commit451/AdapterLayout'
 }
