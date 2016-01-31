@@ -28,11 +28,6 @@ public class CustomAdapterLayoutActivity extends AppCompatActivity {
         mAdapter.removeLast();
     }
 
-    @OnClick(R.id.change_middle)
-    void onRemoveMiddleClicked() {
-        mAdapter.changeMiddle();
-    }
-
     @OnClick(R.id.new_adapter)
     void onNewAdapterClicked() {
         mAdapterLayout.setAdapter(null);

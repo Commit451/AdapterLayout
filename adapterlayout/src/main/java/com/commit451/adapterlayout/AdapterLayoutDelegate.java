@@ -16,19 +16,20 @@ public class AdapterLayoutDelegate {
     private ViewGroup mViewGroup;
 
     /**
-     * Checks for if the data changes
+     * Checks for if the data changes and changes the views accordingly 
      */
     private RecyclerView.AdapterDataObserver mObserver = new RecyclerView.AdapterDataObserver() {
         @Override
         public void onChanged() {
             super.onChanged();
+            //too general, we just have to completely recreate
             recreateViews();
         }
 
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount) {
             super.onItemRangeChanged(positionStart, itemCount);
-            recreateViews();
+            updateViews(positionStart, itemCount, null);
         }
 
         @Override
@@ -40,13 +41,13 @@ public class AdapterLayoutDelegate {
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
             super.onItemRangeInserted(positionStart, itemCount);
-            recreateViews();
+            addViews(positionStart, itemCount);
         }
 
         @Override
         public void onItemRangeRemoved(int positionStart, int itemCount) {
             super.onItemRangeRemoved(positionStart, itemCount);
-            recreateViews();
+            removeViews(positionStart, itemCount);
         }
 
         @Override
@@ -83,6 +84,10 @@ public class AdapterLayoutDelegate {
         recreateViews();
     }
 
+    /**
+     * Returns the adapter which was passed via {@link #setAdapter(RecyclerView.Adapter)}
+     * @return the adapter
+     */
     public @Nullable RecyclerView.Adapter getAdapter() {
         return mAdapter;
     }
@@ -101,7 +106,8 @@ public class AdapterLayoutDelegate {
     }
 
     private void addViews(int positionStart, int itemCount) {
-        for (int i=positionStart; i<itemCount; i++) {
+        final int end = positionStart + itemCount;
+        for (int i=positionStart; i<end; i++) {
             addViewAt(i);
         }
     }
@@ -120,7 +126,8 @@ public class AdapterLayoutDelegate {
 
     private void updateViews(int positionStart, int itemCount, Object payload) {
         //TODO do something with the payload?
-        for (int i=positionStart; i<itemCount; i++) {
+        final int end = positionStart + itemCount;
+        for (int i=positionStart; i<end; i++) {
             RecyclerView.ViewHolder viewHolder = getViewHolderAt(i);
             if (payload != null) {
                 mAdapter.onBindViewHolder(viewHolder, i);

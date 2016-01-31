@@ -55,6 +55,23 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
         }
     }
 
+    public void changeAll() {
+        if (!mValues.isEmpty()) {
+            for (Cheese cheese : mValues) {
+                cheese.setName("Swiss");
+            }
+            notifyItemRangeChanged(0, mValues.size());
+        }
+    }
+
+    public void clear() {
+        if (!mValues.isEmpty()) {
+            int size = mValues.size();
+            mValues.clear();
+            notifyItemRangeRemoved(0, size);
+        }
+    }
+
     @Override
     public CheeseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CheeseViewHolder holder = CheeseViewHolder.inflate(parent);

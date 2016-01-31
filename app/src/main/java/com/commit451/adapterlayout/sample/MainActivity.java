@@ -39,6 +39,16 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.changeMiddle();
     }
 
+    @OnClick(R.id.clear_all)
+    void onClearAll() {
+        mAdapter.clear();
+    }
+
+    @OnClick(R.id.change_all)
+    void onChangeAll() {
+        mAdapter.changeAll();
+    }
+
     @OnClick(R.id.new_adapter)
     void onNewAdapterClicked() {
         mAdapterLinearLayout.setAdapter(null);
