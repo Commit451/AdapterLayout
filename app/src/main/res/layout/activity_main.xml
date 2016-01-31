@@ -43,10 +43,10 @@
                     android:text="Remove Last" />
 
                 <Button
-                    android:id="@+id/remove_middle"
+                    android:id="@+id/change_middle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Remove Middle" />
+                    android:text="Change Middle" />
 
                 <Button
                     android:id="@+id/new_adapter"

@@ -34,7 +34,7 @@ public class AdapterLayoutDelegate {
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount, Object payload) {
             super.onItemRangeChanged(positionStart, itemCount, payload);
-            recreateViews();
+            updateViews(positionStart, itemCount, payload);
         }
 
         @Override

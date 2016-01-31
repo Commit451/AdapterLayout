@@ -47,11 +47,11 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
         }
     }
 
-    public void removeMiddle() {
+    public void changeMiddle() {
         if (!mValues.isEmpty()) {
-            int indexRemoved = mValues.size()/2;
-            mValues.remove(indexRemoved);
-            notifyItemRemoved(indexRemoved);
+            int index = mValues.size()/2;
+            mValues.get(index).setName("Swiss");
+            notifyItemChanged(index);
         }
     }
 
