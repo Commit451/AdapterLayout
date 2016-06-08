@@ -1,13 +1,21 @@
 # AdapterLayout
 ViewGroup backed by RecyclerView.Adapter = magic
 
-[![Build Status](https://travis-ci.org/Commit451/AdapterLayout.svg?branch=master)](https://travis-ci.org/Commit451/AdapterLayout)
+[![Build Status](https://travis-ci.org/Commit451/AdapterLayout.svg?branch=master)](https://travis-ci.org/Commit451/AdapterLayout) [![](https://jitpack.io/v/Commit451/AdapterLayout.svg)](https://jitpack.io/#Commit451/AdapterLayout)
 
-# Gradle Dependency
-Easily reference the library in your Android projects using this dependency in your module's `build.gradle` file:
-```Gradle
+# Dependency
+```gradle
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+and within your application `build.gradle`
+
+```gradle
 dependencies {
-    compile 'com.commit451:adapterlayout:1.0.1'
+    compile 'com.github.Commit451:AdapterLayout:1.0.2'
 }
 ```
 
