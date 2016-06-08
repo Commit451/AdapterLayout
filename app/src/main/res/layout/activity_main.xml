@@ -3,7 +3,8 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clipChildren="false">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -11,9 +12,14 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary" />
 
+    <!--
+        Only need to set clip children to false if you want
+        to animate layout changes
+    -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clipChildren="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,6 +30,7 @@
                 android:id="@+id/adapter_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
                 android:orientation="vertical" />
 
             <com.wefika.flowlayout.FlowLayout
@@ -65,6 +72,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="New Adapter" />
+
+                <CheckBox
+                    android:id="@+id/animate_layout_changes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Animate Layout Changes"/>
 
             </com.wefika.flowlayout.FlowLayout>
         </LinearLayout>

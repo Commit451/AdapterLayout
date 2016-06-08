@@ -1,5 +1,6 @@
 package com.commit451.adapterlayout.sample;
 
+import android.animation.LayoutTransition;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -7,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.commit451.adapterlayout.AdapterLinearLayout;
 
@@ -23,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.adapter_layout)
     AdapterLinearLayout mAdapterLinearLayout;
     CheeseAdapter mAdapter;
+    @Bind(R.id.animate_layout_changes)
+    CheckBox mCheckboxAnimateLayoutChanges;
 
     @OnClick(R.id.add_cheese)
     void onAddCheeseClicked() {
@@ -84,5 +89,17 @@ public class MainActivity extends AppCompatActivity {
         });
         mAdapter = new CheeseAdapter(mListener);
         mAdapterLinearLayout.setAdapter(mAdapter);
+
+        mCheckboxAnimateLayoutChanges.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    LayoutTransition lt = new LayoutTransition();
+                    mAdapterLinearLayout.setLayoutTransition(lt);
+                } else {
+                    mAdapterLinearLayout.setLayoutTransition(null);
+                }
+            }
+        });
     }
 }
