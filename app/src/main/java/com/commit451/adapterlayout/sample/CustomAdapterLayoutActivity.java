@@ -6,6 +6,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import com.commit451.adapterflowlayout.AdapterFlowLayout;
+
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -15,7 +17,8 @@ import butterknife.OnClick;
 public class CustomAdapterLayoutActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar) Toolbar mToolbar;
-    @Bind(R.id.adapter_layout) AdapterFlowLayout mAdapterLayout;
+    @Bind(R.id.adapter_layout)
+    AdapterFlowLayout mAdapterLayout;
     CheeseAdapter mAdapter;
 
     @OnClick(R.id.add_cheese)

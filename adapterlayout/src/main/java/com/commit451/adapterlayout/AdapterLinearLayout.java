@@ -2,6 +2,7 @@ package com.commit451.adapterlayout;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -25,11 +26,12 @@ public class AdapterLinearLayout extends LinearLayout {
         super(context, attrs);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public AdapterLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    @TargetApi(21)
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public AdapterLinearLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }

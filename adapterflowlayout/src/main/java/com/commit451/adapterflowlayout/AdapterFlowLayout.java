@@ -1,4 +1,4 @@
-package com.commit451.adapterlayout.sample;
+package com.commit451.adapterflowlayout;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

@@ -1,1 +1,1 @@
-include ':app', ':adapterlayout'
+include ':app', ':adapterlayout', ':adapterflowlayout'

@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.commit451.adapterlayout.sample.AdapterFlowLayout
+            <com.commit451.adapterflowlayout.AdapterFlowLayout
                 android:id="@+id/adapter_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
