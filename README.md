@@ -15,7 +15,13 @@ and within your application `build.gradle`
 
 ```gradle
 dependencies {
-    compile 'com.github.Commit451:AdapterLayout:1.0.2'
+    compile 'com.github.Commit451.AdapterLayout:adapterlayout:1.0.3'
+}
+```
+and for FlowLayout support
+```gradle
+dependencies {
+    compile 'com.github.Commit451.AdapterLayout:adapterflowlayout:1.0.3'
 }
 ```
 
@@ -43,10 +49,13 @@ Most developers should be using `RecyclerView` instead of `ListView` and should 
 
 # Currently Created AdapterLayouts
 - AdapterLinearLayout
-- AdapterFlowLayout (currently in the sample app, can be copied out)
+- AdapterFlowLayout (separate dependency)
 
 # Creating Your Own AdapterLayout
 It is simple to create your own `ViewGroup` backed by a `RecyclerView.Adapter`. See `AdapterFlowLayout` in the sample app and `AdapterLayoutDelegate` in the library for an example of how to create one.
+
+# Limitations
+- Within a `RecyclerView.Adapter`, you can call `getAdapterPosition()`. This will always return -1 since there is actually never an associated RecyclerView.
 
 License
 --------
