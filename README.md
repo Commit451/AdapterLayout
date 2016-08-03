@@ -18,7 +18,7 @@ dependencies {
     compile 'com.github.Commit451.AdapterLayout:adapterlayout:1.0.3'
 }
 ```
-and for FlowLayout support
+and for [FlowLayout](https://github.com/blazsolar/FlowLayout) support
 ```gradle
 dependencies {
     compile 'com.github.Commit451.AdapterLayout:adapterflowlayout:1.0.3'
