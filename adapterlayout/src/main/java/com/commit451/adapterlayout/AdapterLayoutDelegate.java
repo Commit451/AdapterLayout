@@ -16,7 +16,7 @@ public class AdapterLayoutDelegate {
     private ViewGroup mViewGroup;
 
     /**
-     * Checks for if the data changes and changes the views accordingly 
+     * Checks for if the data changes and changes the views accordingly
      */
     private RecyclerView.AdapterDataObserver mObserver = new RecyclerView.AdapterDataObserver() {
         @Override
@@ -60,6 +60,7 @@ public class AdapterLayoutDelegate {
 
     /**
      * Create a new delegate, acting as the bridge between the adapter and the ViewGroup
+     *
      * @param viewGroup the ViewGroup which will have views added and removed from
      */
     public AdapterLayoutDelegate(ViewGroup viewGroup) {
@@ -68,13 +69,15 @@ public class AdapterLayoutDelegate {
 
     /**
      * Set the adapter which will add and remove views from this layout
+     *
      * @param adapter the adapter
      */
-    public void setAdapter(RecyclerView.Adapter adapter) {
+    public void setAdapter(@Nullable RecyclerView.Adapter adapter) {
         if (mAdapter != null) {
             try {
                 mAdapter.unregisterAdapterDataObserver(mObserver);
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
 
         mAdapter = adapter;
@@ -86,18 +89,22 @@ public class AdapterLayoutDelegate {
 
     /**
      * Returns the adapter which was passed via {@link #setAdapter(RecyclerView.Adapter)}
+     *
      * @return the adapter
      */
-    public @Nullable RecyclerView.Adapter getAdapter() {
+    @Nullable
+    public RecyclerView.Adapter getAdapter() {
         return mAdapter;
     }
 
     /**
      * Return the {@link android.support.v7.widget.RecyclerView.ViewHolder} at the specified position.
+     *
      * @param index the position at which to get the ViewHolder
      * @return the ViewHolder at the index, or null if none exists
      */
-    public @Nullable RecyclerView.ViewHolder getViewHolderAt(int index) {
+    @Nullable
+    public RecyclerView.ViewHolder getViewHolderAt(int index) {
         View view = mViewGroup.getChildAt(index);
         if (view == null) {
             return null;
@@ -107,7 +114,7 @@ public class AdapterLayoutDelegate {
 
     private void addViews(int positionStart, int itemCount) {
         final int end = positionStart + itemCount;
-        for (int i=positionStart; i<end; i++) {
+        for (int i = positionStart; i < end; i++) {
             addViewAt(i);
         }
     }
@@ -124,16 +131,11 @@ public class AdapterLayoutDelegate {
         mAdapter.onBindViewHolder(viewHolder, index);
     }
 
-    private void updateViews(int positionStart, int itemCount, Object payload) {
-        //TODO do something with the payload?
+    private void updateViews(int positionStart, int itemCount, @Nullable Object payload) {
         final int end = positionStart + itemCount;
-        for (int i=positionStart; i<end; i++) {
+        for (int i = positionStart; i < end; i++) {
             RecyclerView.ViewHolder viewHolder = getViewHolderAt(i);
-            if (payload != null) {
-                mAdapter.onBindViewHolder(viewHolder, i);
-            } else {
-                mAdapter.onBindViewHolder(viewHolder, i);
-            }
+            mAdapter.onBindViewHolder(viewHolder, i);
         }
     }
 

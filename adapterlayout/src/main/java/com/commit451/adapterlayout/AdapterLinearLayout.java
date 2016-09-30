@@ -53,6 +53,9 @@ public class AdapterLinearLayout extends LinearLayout {
 
     @Nullable
     public RecyclerView.ViewHolder getViewHolderAt(int index) {
-        return mAdapterLayoutDelegate.getViewHolderAt(index);
+        if (mAdapterLayoutDelegate != null) {
+            return mAdapterLayoutDelegate.getViewHolderAt(index);
+        }
+        return null;
     }
 }

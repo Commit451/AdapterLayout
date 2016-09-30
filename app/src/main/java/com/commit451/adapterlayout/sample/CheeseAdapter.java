@@ -9,7 +9,6 @@ import java.util.Collection;
 
 /**
  * Adapter for the recyclerview, which holds cheeses
- * Created by John on 11/24/15.
  */
 public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
 
