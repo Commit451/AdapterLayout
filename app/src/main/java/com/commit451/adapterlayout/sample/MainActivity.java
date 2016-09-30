@@ -101,5 +101,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        mCheckboxAnimateLayoutChanges.setChecked(true);
     }
 }

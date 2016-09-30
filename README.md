@@ -1,5 +1,5 @@
 # AdapterLayout
-ViewGroup backed by RecyclerView.Adapter = magic
+ViewGroup backed by RecyclerView.Adapter, allowing for easy data set manipulation with non recycling views. Aka RecyclerView minus the recycling.
 
 [![Build Status](https://travis-ci.org/Commit451/AdapterLayout.svg?branch=master)](https://travis-ci.org/Commit451/AdapterLayout) [![](https://jitpack.io/v/Commit451/AdapterLayout.svg)](https://jitpack.io/#Commit451/AdapterLayout)
 
@@ -26,7 +26,7 @@ dependencies {
 ```
 
 # Usage
-See the sample project for a full sample.
+See the sample project for full usage.
 ```java
 //CheeseAdapter is a RecyclerView adapter
 CheeseAdapter cheeseAdapter = new CheeseAdapter();
@@ -52,7 +52,7 @@ Most developers should be using `RecyclerView` instead of `ListView` and should 
 - AdapterFlowLayout (separate dependency)
 
 # Creating Your Own AdapterLayout
-It is simple to create your own `ViewGroup` backed by a `RecyclerView.Adapter`. See `AdapterFlowLayout` in the sample app and `AdapterLayoutDelegate` in the library for an example of how to create one.
+It is simple to create your own `ViewGroup` backed by a `RecyclerView.Adapter`. See the `AdapterFlowLayout` library and `AdapterLayoutDelegate` in the library for an example of how to create one.
 
 # Limitations
 - Within a `RecyclerView.Adapter`, you can call `getAdapterPosition()`. This will always return -1 since there is actually never an associated RecyclerView.
