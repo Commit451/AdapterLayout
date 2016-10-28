@@ -15,13 +15,13 @@ and within your application `build.gradle`
 
 ```gradle
 dependencies {
-    compile 'com.github.Commit451.AdapterLayout:adapterlayout:1.0.3'
+    compile 'com.github.Commit451.AdapterLayout:adapterlayout:latest.release.here'
 }
 ```
 and for [FlowLayout](https://github.com/blazsolar/FlowLayout) support
 ```gradle
 dependencies {
-    compile 'com.github.Commit451.AdapterLayout:adapterflowlayout:1.0.3'
+    compile 'com.github.Commit451.AdapterLayout:adapterflowlayout:latest.release.here'
 }
 ```
 
