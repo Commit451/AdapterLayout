@@ -2,4 +2,5 @@
 <resources>
     <item name="adapter_layout_list_holder" type="id" />
     <item name="adapter_layout_list_view_type" type="id"/>
+    <item name="adapter_layout_list_position" type="id"/>
 </resources>

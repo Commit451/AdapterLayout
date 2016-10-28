@@ -4,6 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.commit451.adapterlayout.AdapterLayout;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -14,14 +16,6 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
 
     private Listener mListener;
     private ArrayList<Cheese> mValues;
-    private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            int position = (int) v.getTag(R.id.list_position);
-            Cheese cheese = getItemAt(position);
-            mListener.onItemClicked(cheese);
-        }
-    };
 
     public CheeseAdapter(Listener listener) {
         mListener = listener;
@@ -73,8 +67,16 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
 
     @Override
     public CheeseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        CheeseViewHolder holder = CheeseViewHolder.inflate(parent);
-        holder.itemView.setOnClickListener(mOnClickListener);
+        final CheeseViewHolder holder = CheeseViewHolder.inflate(parent);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Takes the place of holder.getAdapterPosition()
+                int position = AdapterLayout.getAdapterPosition(holder);
+                Cheese cheese = getItemAt(position);
+                mListener.onItemClicked(cheese);
+            }
+        });
         return holder;
     }
 
@@ -82,8 +84,6 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
     public void onBindViewHolder(final CheeseViewHolder holder, int position) {
         Cheese cheese = getItemAt(position);
         holder.bind(cheese);
-        holder.itemView.setTag(R.id.list_position, position);
-        holder.itemView.setTag(R.id.list_holder, holder);
     }
 
     @Override

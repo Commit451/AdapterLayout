@@ -43,7 +43,6 @@ public class AdapterLinearLayout extends LinearLayout {
         mAdapterLayoutDelegate.setAdapter(adapter);
     }
 
-    @Nullable
     public RecyclerView.Adapter getAdapter() {
         if (mAdapterLayoutDelegate != null) {
             return mAdapterLayoutDelegate.getAdapter();

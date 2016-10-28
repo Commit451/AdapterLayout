@@ -92,7 +92,6 @@ public class AdapterLayoutDelegate {
      *
      * @return the adapter
      */
-    @Nullable
     public RecyclerView.Adapter getAdapter() {
         return mAdapter;
     }
@@ -125,8 +124,10 @@ public class AdapterLayoutDelegate {
 
     private void addViewAt(int viewType, int index) {
         RecyclerView.ViewHolder viewHolder = mAdapter.onCreateViewHolder(mViewGroup, viewType);
+        //setting the lib to min 4.0 to avoid leaks from doing this
         viewHolder.itemView.setTag(R.id.adapter_layout_list_holder, viewHolder);
         viewHolder.itemView.setTag(R.id.adapter_layout_list_view_type, viewType);
+        viewHolder.itemView.setTag(R.id.adapter_layout_list_position, index);
         mViewGroup.addView(viewHolder.itemView);
         mAdapter.onBindViewHolder(viewHolder, index);
     }
