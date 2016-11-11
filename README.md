@@ -55,7 +55,7 @@ Most developers should be using `RecyclerView` instead of `ListView` and should 
 It is simple to create your own `ViewGroup` backed by a `RecyclerView.Adapter`. See the `AdapterFlowLayout` library and `AdapterLayoutDelegate` in the library for an example of how to create one.
 
 # Limitations
-- Within a `RecyclerView.Adapter`, you can call `getAdapterPosition()`. This will always return -1 since there is actually never an associated RecyclerView.
+- Within a `RecyclerView.Adapter`, you can call `getAdapterPosition()`. This will always return -1 since there is actually never an associated RecyclerView. Instead, you can call `AdapterLayout.getAdapterPosition(holder)` to get the position of the `ViewHolder` within the adapter.
 
 License
 --------
