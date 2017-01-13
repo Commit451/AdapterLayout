@@ -19,8 +19,11 @@ dependencies {
 }
 ```
 and for [FlowLayout](https://github.com/blazsolar/FlowLayout) support
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout)
 ```gradle
 dependencies {
+    //add the latest of FlowLayout
+    compile 'com.wefika:flowlayout:latest.release.here'
     compile 'com.github.Commit451.AdapterLayout:adapterflowlayout:latest.release.here@aar'
 }
 ```
