@@ -1,1 +1,1 @@
-include ':app', ':adapterlayout', ':adapterflowlayout'
+include ':app', ':adapterlayout', ':adapterflowlayout', ':adapterlayout-kotlin'

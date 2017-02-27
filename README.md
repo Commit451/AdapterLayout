@@ -18,13 +18,19 @@ dependencies {
     compile 'com.github.Commit451.AdapterLayout:adapterlayout:latest.release.here@aar'
 }
 ```
-and for [FlowLayout](https://github.com/blazsolar/FlowLayout) support
+and for [FlowLayout](https://github.com/blazsolar/FlowLayout) support:
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout)
 ```gradle
 dependencies {
     //add the latest of FlowLayout
     compile 'com.wefika:flowlayout:latest.release.here'
     compile 'com.github.Commit451.AdapterLayout:adapterflowlayout:latest.release.here@aar'
+}
+```
+and for Kotlin extensions support:
+```gradle
+dependencies {
+    compile 'com.github.Commit451.AdapterLayout:adapterlayout-kotlin:latest.release.here@aar'
 }
 ```
 
@@ -44,17 +50,17 @@ cheeseAdapter.addAll(cheeses);
 ```
 At this point, the data will be added to the `LinearLayout` so long as your `RecyclerView.Adapter` works correctly. `onCreateViewHolder` and `onBindViewHolder` will be called as needed.
 
-# But... Why?
+## But... Why?
 This library is useful for displaying data sets that are repeating, but do not need to be recycled as they would be in a `RecyclerView`. This could be the case if you wanted to display a list of items within a `ScrollView`, or wanted to use a custom `ViewGroup` that did not extend `RecyclerView`.
 
-# But Why RecyclerView Adapter?
+## But Why RecyclerView Adapter?
 Most developers should be using `RecyclerView` instead of `ListView` and should be familiar with creating a `RecyclerView.Adapter`. `RecyclerView.Adapter` also enforces the use of `ViewHolder`s which is better for performance. RecyclerView's adapter also allows for better responses to data structure changes via `notifyItemInserted`, `notifyItemRemoved` etc.
 
-# Currently Created AdapterLayouts
+## Currently Created AdapterLayouts
 - AdapterLinearLayout
 - AdapterFlowLayout (separate dependency)
 
-# Creating Your Own AdapterLayout
+## Creating Your Own AdapterLayout
 It is simple to create your own `ViewGroup` backed by a `RecyclerView.Adapter`. See the `AdapterFlowLayout` library and `AdapterLayoutDelegate` in the library for an example of how to create one.
 
 # Limitations
@@ -63,7 +69,7 @@ It is simple to create your own `ViewGroup` backed by a `RecyclerView.Adapter`. 
 License
 --------
 
-    Copyright 2016 Commit 451
+    Copyright 2017 Commit 451
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
