@@ -153,36 +153,33 @@ public class AdapterLayoutDelegate {
             mViewGroup.removeAllViews();
             return;
         }
-        for (int i = 0; i < mAdapter.getItemCount() || i < mViewGroup.getChildCount(); i++) {
+        int i;
+        for (i = 0; i < mAdapter.getItemCount(); i++) {
 
-            //Within the bounds of the dataset
-            if (i < mAdapter.getItemCount()) {
-                int viewType = mAdapter.getItemViewType(i);
-                //This means the view could already exist
-                if (i < mViewGroup.getChildCount()) {
-                    View child = mViewGroup.getChildAt(i);
-                    Integer savedViewType = (Integer) child.getTag(R.id.adapter_layout_list_view_type);
-                    RecyclerView.ViewHolder savedViewHolder = (RecyclerView.ViewHolder) child.getTag(R.id.adapter_layout_list_holder);
+          int viewType = mAdapter.getItemViewType(i);
+          //This means the view could already exist
+          if (i < mViewGroup.getChildCount()) {
+            View child = mViewGroup.getChildAt(i);
+            Integer savedViewType = (Integer) child.getTag(R.id.adapter_layout_list_view_type);
+            RecyclerView.ViewHolder savedViewHolder = (RecyclerView.ViewHolder) child.getTag(R.id.adapter_layout_list_holder);
 
-                    if (savedViewType != null && savedViewType == viewType && savedViewHolder != null) {
-                        //perfect, it exists and is the right type, so just bind it
-                        mAdapter.onBindViewHolder(savedViewHolder, i);
-                    } else {
-                        //it already existed, but something was wrong. So remove it and recreate it
-                        addViewAt(viewType, i);
-                        mViewGroup.removeView(child);
-                    }
-                } else {
-                    //Creating a brand new view
-                    addViewAt(viewType, i);
-                }
+            if (savedViewType != null && savedViewType == viewType && savedViewHolder != null) {
+              //perfect, it exists and is the right type, so just bind it
+              mAdapter.onBindViewHolder(savedViewHolder, i);
             } else {
-                //Outside the bounds of the dataset, so remove it
-                if (i < mViewGroup.getChildCount()) {
-                    View child = mViewGroup.getChildAt(i);
-                    mViewGroup.removeView(child);
-                }
+              //it already existed, but something was wrong. So remove it and recreate it
+              addViewAt(viewType, i);
+              mViewGroup.removeView(child);
             }
+          } else {
+            //Creating a brand new view
+            addViewAt(viewType, i);
+          }
+        }
+
+        //Outside the bounds of the dataset, so remove it
+        if (i < mViewGroup.getChildCount()) {
+          mViewGroup.removeViews(i, mViewGroup.getChildCount() - i);
         }
     }
 }
