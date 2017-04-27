@@ -1,5 +1,7 @@
 package com.commit451.adapterlayout.sample;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -25,7 +27,7 @@ public class Cheeses {
         }
     }
 
-    public static final String[] sCheeseStrings = {
+    public static final String[] cheeseStrings = {
             "Abbaye de Belloc", "Abbaye du Mont des Cats", "Abertam", "Abondance", "Ackawi",
             "Acorn", "Adelost", "Affidelice au Chablis", "Afuega'l Pitu", "Airag", "Airedale",
             "Aisy Cendre", "Allgauer Emmentaler", "Alverca", "Ambert", "American Cheese",
@@ -159,11 +161,19 @@ public class Cheeses {
     };
 
     public static String getRandomCheeseName() {
-        return sCheeseStrings[RANDOM.nextInt(sCheeseStrings.length-1)];
+        return cheeseStrings[RANDOM.nextInt(cheeseStrings.length-1)];
     }
 
     public static Cheese getRandomCheese() {
         return new Cheese(getRandomCheeseDrawable(), getRandomCheeseName());
+    }
+
+    public static List<Cheese> getRandomCheeses(int count) {
+        List<Cheese> cheeses = new ArrayList<>(count);
+        for (int i=0; i<count; i++) {
+            cheeses.add(getRandomCheese());
+        }
+        return cheeses;
     }
 
 }

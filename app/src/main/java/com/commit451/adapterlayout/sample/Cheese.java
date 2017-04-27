@@ -5,23 +5,23 @@ package com.commit451.adapterlayout.sample;
  */
 public class Cheese {
 
-    int mDrawable;
-    String mName;
+    int drawable;
+    String name;
 
     public Cheese(int drawable, String name) {
-        mDrawable = drawable;
-        mName = name;
+        this.drawable = drawable;
+        this.name = name;
     }
 
     public int getDrawable() {
-        return mDrawable;
+        return drawable;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 }

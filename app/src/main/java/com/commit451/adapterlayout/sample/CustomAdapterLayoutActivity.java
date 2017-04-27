@@ -16,29 +16,14 @@ import butterknife.OnClick;
 
 public class CustomAdapterLayoutActivity extends AppCompatActivity {
 
-    @Bind(R.id.toolbar) Toolbar mToolbar;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
     @Bind(R.id.adapter_layout)
-    AdapterFlowLayout mAdapterLayout;
-    CheeseAdapter mAdapter;
+    AdapterFlowLayout adapterFlowLayout;
 
-    @OnClick(R.id.add_cheese)
-    void onAddCheeseClicked() {
-        mAdapter.add(Cheeses.getRandomCheese());
-    }
+    CheeseAdapter adapter;
 
-    @OnClick(R.id.remove_cheese)
-    void onRemoveCheeseClicked() {
-        mAdapter.removeLast();
-    }
-
-    @OnClick(R.id.new_adapter)
-    void onNewAdapterClicked() {
-        mAdapterLayout.setAdapter(null);
-        mAdapter = new CheeseAdapter(mListener);
-        mAdapterLayout.setAdapter(mAdapter);
-    }
-
-    private CheeseAdapter.Listener mListener = new CheeseAdapter.Listener() {
+    private CheeseAdapter.Listener listener = new CheeseAdapter.Listener() {
         @Override
         public void onItemClicked(Cheese cheese) {
             Toast.makeText(CustomAdapterLayoutActivity.this, cheese.getName() + " clicked", Toast.LENGTH_SHORT)
@@ -46,20 +31,37 @@ public class CustomAdapterLayoutActivity extends AppCompatActivity {
         }
     };
 
+    @OnClick(R.id.add_cheese)
+    void onAddCheeseClicked() {
+        adapter.add(Cheeses.getRandomCheese());
+    }
+
+    @OnClick(R.id.remove_cheese)
+    void onRemoveCheeseClicked() {
+        adapter.removeLast();
+    }
+
+    @OnClick(R.id.new_adapter)
+    void onNewAdapterClicked() {
+        adapterFlowLayout.setAdapter(null);
+        adapter = new CheeseAdapter(listener);
+        adapterFlowLayout.setAdapter(adapter);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_adapter_layout);
         ButterKnife.bind(this);
-        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        mAdapter = new CheeseAdapter(mListener);
-        mAdapterLayout.setAdapter(mAdapter);
+        adapter = new CheeseAdapter(listener);
+        adapterFlowLayout.setAdapter(adapter);
         loadCheeses();
     }
 
@@ -68,6 +70,6 @@ public class CustomAdapterLayoutActivity extends AppCompatActivity {
         for (int i=0; i<5; i++) {
             cheeses.add(Cheeses.getRandomCheese());
         }
-        mAdapter.setData(cheeses);
+        adapter.setData(cheeses);
     }
 }

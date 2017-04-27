@@ -20,63 +20,62 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.root)
-    ViewGroup mRoot;
+    ViewGroup root;
     @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar toolbar;
     @Bind(R.id.adapter_layout)
-    AdapterLinearLayout mAdapterLinearLayout;
-    CheeseAdapter mAdapter;
+    AdapterLinearLayout adapterLinearLayout;
     @Bind(R.id.animate_layout_changes)
-    CheckBox mCheckboxAnimateLayoutChanges;
+    CheckBox checkBoxAnimateLayoutChanges;
 
-    @OnClick(R.id.add_cheese)
-    void onAddCheeseClicked() {
-        mAdapter.add(Cheeses.getRandomCheese());
-    }
-
-    @OnClick(R.id.remove_cheese)
-    void onRemoveCheeseClicked() {
-        mAdapter.removeLast();
-    }
-
-    @OnClick(R.id.change_middle)
-    void onRemoveMiddleClicked() {
-        mAdapter.changeMiddle();
-    }
-
-    @OnClick(R.id.clear_all)
-    void onClearAll() {
-        mAdapter.clear();
-    }
-
-    @OnClick(R.id.change_all)
-    void onChangeAll() {
-        mAdapter.changeAll();
-    }
-
-    @OnClick(R.id.new_adapter)
-    void onNewAdapterClicked() {
-        mAdapterLinearLayout.setAdapter(null);
-        mAdapter = new CheeseAdapter(mListener);
-        mAdapterLinearLayout.setAdapter(mAdapter);
-    }
+    CheeseAdapter adapter;
 
     private CheeseAdapter.Listener mListener = new CheeseAdapter.Listener() {
         @Override
         public void onItemClicked(Cheese cheese) {
-            Snackbar.make(mRoot, cheese.getName() + " clicked", Snackbar.LENGTH_SHORT)
+            Snackbar.make(root, cheese.getName() + " clicked", Snackbar.LENGTH_SHORT)
                     .show();
         }
     };
+
+    @OnClick(R.id.add_cheese)
+    void onAddCheeseClicked() {
+        adapter.add(Cheeses.getRandomCheese());
+    }
+
+    @OnClick(R.id.remove_cheese)
+    void onRemoveCheeseClicked() {
+        adapter.removeLast();
+    }
+
+    @OnClick(R.id.change_middle)
+    void onRemoveMiddleClicked() {
+        adapter.changeMiddle();
+    }
+
+    @OnClick(R.id.clear_all)
+    void onClearAll() {
+        adapter.clear();
+    }
+
+    @OnClick(R.id.change_all)
+    void onChangeAll() {
+        adapter.changeAll();
+    }
+
+    @OnClick(R.id.new_adapter)
+    void onNewAdapterClicked() {
+        adapter.setData(Cheeses.getRandomCheeses(5));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mToolbar.setTitle(R.string.app_name);
-        mToolbar.inflateMenu(R.menu.main);
-        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        toolbar.setTitle(R.string.app_name);
+        toolbar.inflateMenu(R.menu.main);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
@@ -87,20 +86,27 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        mAdapter = new CheeseAdapter(mListener);
-        mAdapterLinearLayout.setAdapter(mAdapter);
+        adapter = new CheeseAdapter(new CheeseAdapter.Listener() {
+            @Override
+            public void onItemClicked(Cheese cheese) {
 
-        mCheckboxAnimateLayoutChanges.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            }
+        });
+        adapterLinearLayout.setAdapter(adapter);
+
+        checkBoxAnimateLayoutChanges.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     LayoutTransition lt = new LayoutTransition();
-                    mAdapterLinearLayout.setLayoutTransition(lt);
+                    adapterLinearLayout.setLayoutTransition(lt);
                 } else {
-                    mAdapterLinearLayout.setLayoutTransition(null);
+                    adapterLinearLayout.setLayoutTransition(null);
                 }
             }
         });
-        mCheckboxAnimateLayoutChanges.setChecked(true);
+        checkBoxAnimateLayoutChanges.setChecked(true);
+
+        adapter.setData(Cheeses.getRandomCheeses(10));
     }
 }

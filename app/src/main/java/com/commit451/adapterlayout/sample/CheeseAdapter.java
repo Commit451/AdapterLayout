@@ -14,53 +14,54 @@ import java.util.Collection;
  */
 public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
 
-    private Listener mListener;
-    private ArrayList<Cheese> mValues;
+    private Listener listener;
+    private ArrayList<Cheese> values;
 
     public CheeseAdapter(Listener listener) {
-        mListener = listener;
-        mValues = new ArrayList<>();
+        this.listener = listener;
+        values = new ArrayList<>();
     }
 
     public void setData(Collection<Cheese> cheeses) {
-        mValues.addAll(cheeses);
+        values.clear();
+        values.addAll(cheeses);
         notifyDataSetChanged();
     }
 
     public void add(Cheese cheese) {
-        mValues.add(cheese);
-        notifyItemInserted(mValues.size()-1);
+        values.add(cheese);
+        notifyItemInserted(values.size()-1);
     }
 
     public void removeLast() {
-        if (!mValues.isEmpty()) {
-            int removeIndex = mValues.size() - 1;
-            mValues.remove(removeIndex);
+        if (!values.isEmpty()) {
+            int removeIndex = values.size() - 1;
+            values.remove(removeIndex);
             notifyItemRemoved(removeIndex);
         }
     }
 
     public void changeMiddle() {
-        if (!mValues.isEmpty()) {
-            int index = mValues.size()/2;
-            mValues.get(index).setName("Swiss");
+        if (!values.isEmpty()) {
+            int index = values.size()/2;
+            values.get(index).setName("Swiss");
             notifyItemChanged(index);
         }
     }
 
     public void changeAll() {
-        if (!mValues.isEmpty()) {
-            for (Cheese cheese : mValues) {
+        if (!values.isEmpty()) {
+            for (Cheese cheese : values) {
                 cheese.setName("Swiss");
             }
-            notifyItemRangeChanged(0, mValues.size());
+            notifyItemRangeChanged(0, values.size());
         }
     }
 
     public void clear() {
-        if (!mValues.isEmpty()) {
-            int size = mValues.size();
-            mValues.clear();
+        if (!values.isEmpty()) {
+            int size = values.size();
+            values.clear();
             notifyItemRangeRemoved(0, size);
         }
     }
@@ -74,7 +75,7 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
                 //Takes the place of holder.getAdapterPosition()
                 int position = AdapterLayout.getAdapterPosition(holder);
                 Cheese cheese = getItemAt(position);
-                mListener.onItemClicked(cheese);
+                listener.onItemClicked(cheese);
             }
         });
         return holder;
@@ -88,11 +89,11 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return values.size();
     }
 
     private Cheese getItemAt(int position) {
-        return mValues.get(position);
+        return values.get(position);
     }
 
     public interface Listener {

@@ -1,12 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply plugin: 'com.github.ben-manes.versions'
 buildscript {
-    ext.kotlinVersion = '1.0.6'
+    ext.kotlinVersion = '1.1.2'
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.14.0'
@@ -31,5 +31,5 @@ ext {
     compileSdkVersion = 25
     targetSdkVersion = compileSdkVersion
     buildToolsVersion = '25.0.2'
-    supportLibVersion = '25.2.0'
+    supportLibVersion = '25.3.1'
 }
