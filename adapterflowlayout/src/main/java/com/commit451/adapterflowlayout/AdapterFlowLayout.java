@@ -4,13 +4,12 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.widget.Adapter;
 
 import com.commit451.adapterlayout.AdapterLayoutDelegate;
 import com.wefika.flowlayout.FlowLayout;
 
 /**
- * {@link com.wefika.flowlayout.FlowLayout} with {@link Adapter} support.
+ * {@link com.wefika.flowlayout.FlowLayout} with {@link android.support.v7.widget.RecyclerView.Adapter} support.
  */
 public class AdapterFlowLayout extends FlowLayout {
 

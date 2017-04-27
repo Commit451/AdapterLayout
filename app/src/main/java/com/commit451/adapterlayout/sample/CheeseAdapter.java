@@ -44,7 +44,7 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
     public void changeMiddle() {
         if (!values.isEmpty()) {
             int index = values.size()/2;
-            values.get(index).setName("Swiss");
+            values.get(index).name = "Swiss";
             notifyItemChanged(index);
         }
     }
@@ -52,7 +52,7 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
     public void changeAll() {
         if (!values.isEmpty()) {
             for (Cheese cheese : values) {
-                cheese.setName("Swiss");
+                cheese.name = "Swiss";
             }
             notifyItemRangeChanged(0, values.size());
         }

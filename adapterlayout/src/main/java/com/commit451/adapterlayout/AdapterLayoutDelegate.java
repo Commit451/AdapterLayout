@@ -155,31 +155,30 @@ public class AdapterLayoutDelegate {
         }
         int i;
         for (i = 0; i < mAdapter.getItemCount(); i++) {
+            int viewType = mAdapter.getItemViewType(i);
+            //This means the view could already exist
+            if (i < mViewGroup.getChildCount()) {
+                View child = mViewGroup.getChildAt(i);
+                Integer savedViewType = (Integer) child.getTag(R.id.adapter_layout_list_view_type);
+                RecyclerView.ViewHolder savedViewHolder = (RecyclerView.ViewHolder) child.getTag(R.id.adapter_layout_list_holder);
 
-          int viewType = mAdapter.getItemViewType(i);
-          //This means the view could already exist
-          if (i < mViewGroup.getChildCount()) {
-            View child = mViewGroup.getChildAt(i);
-            Integer savedViewType = (Integer) child.getTag(R.id.adapter_layout_list_view_type);
-            RecyclerView.ViewHolder savedViewHolder = (RecyclerView.ViewHolder) child.getTag(R.id.adapter_layout_list_holder);
-
-            if (savedViewType != null && savedViewType == viewType && savedViewHolder != null) {
-              //perfect, it exists and is the right type, so just bind it
-              mAdapter.onBindViewHolder(savedViewHolder, i);
+                if (savedViewType != null && savedViewType == viewType && savedViewHolder != null) {
+                    //perfect, it exists and is the right type, so just bind it
+                    mAdapter.onBindViewHolder(savedViewHolder, i);
+                } else {
+                    //it already existed, but something was wrong. So remove it and recreate it
+                    addViewAt(viewType, i);
+                    mViewGroup.removeView(child);
+                }
             } else {
-              //it already existed, but something was wrong. So remove it and recreate it
-              addViewAt(viewType, i);
-              mViewGroup.removeView(child);
+                //Creating a brand new view
+                addViewAt(viewType, i);
             }
-          } else {
-            //Creating a brand new view
-            addViewAt(viewType, i);
-          }
         }
 
         //Outside the bounds of the dataset, so remove it
         if (i < mViewGroup.getChildCount()) {
-          mViewGroup.removeViews(i, mViewGroup.getChildCount() - i);
+            mViewGroup.removeViews(i, mViewGroup.getChildCount() - i);
         }
     }
 }

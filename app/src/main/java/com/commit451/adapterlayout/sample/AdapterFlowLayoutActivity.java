@@ -10,15 +10,15 @@ import com.commit451.adapterflowlayout.AdapterFlowLayout;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CustomAdapterLayoutActivity extends AppCompatActivity {
+public class AdapterFlowLayoutActivity extends AppCompatActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.adapter_layout)
+    @BindView(R.id.adapter_layout)
     AdapterFlowLayout adapterFlowLayout;
 
     CheeseAdapter adapter;
@@ -26,7 +26,7 @@ public class CustomAdapterLayoutActivity extends AppCompatActivity {
     private CheeseAdapter.Listener listener = new CheeseAdapter.Listener() {
         @Override
         public void onItemClicked(Cheese cheese) {
-            Toast.makeText(CustomAdapterLayoutActivity.this, cheese.getName() + " clicked", Toast.LENGTH_SHORT)
+            Toast.makeText(AdapterFlowLayoutActivity.this, cheese.name + " clicked", Toast.LENGTH_SHORT)
                     .show();
         }
     };

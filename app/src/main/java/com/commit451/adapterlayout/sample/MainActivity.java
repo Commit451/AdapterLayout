@@ -13,27 +13,27 @@ import android.widget.CompoundButton;
 
 import com.commit451.adapterlayout.AdapterLinearLayout;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.root)
+    @BindView(R.id.root)
     ViewGroup root;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.adapter_layout)
+    @BindView(R.id.adapter_layout)
     AdapterLinearLayout adapterLinearLayout;
-    @Bind(R.id.animate_layout_changes)
+    @BindView(R.id.animate_layout_changes)
     CheckBox checkBoxAnimateLayoutChanges;
 
     CheeseAdapter adapter;
 
-    private CheeseAdapter.Listener mListener = new CheeseAdapter.Listener() {
+    private CheeseAdapter.Listener listener = new CheeseAdapter.Listener() {
         @Override
         public void onItemClicked(Cheese cheese) {
-            Snackbar.make(root, cheese.getName() + " clicked", Snackbar.LENGTH_SHORT)
+            Snackbar.make(root, cheese.name + " clicked", Snackbar.LENGTH_SHORT)
                     .show();
         }
     };
@@ -63,9 +63,16 @@ public class MainActivity extends AppCompatActivity {
         adapter.changeAll();
     }
 
+    @OnClick(R.id.set_to_5)
+    void onSetTo5Clicked() {
+        adapter.setData(Cheeses.getRandomCheeses(5));
+    }
+
     @OnClick(R.id.new_adapter)
     void onNewAdapterClicked() {
-        adapter.setData(Cheeses.getRandomCheeses(5));
+        adapterLinearLayout.setAdapter(null);
+        adapter = new CheeseAdapter(listener);
+        adapterLinearLayout.setAdapter(adapter);
     }
 
     @Override
@@ -79,19 +86,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_custom_adapter_layout:
-                        startActivity(new Intent(MainActivity.this, CustomAdapterLayoutActivity.class));
+                    case R.id.action_adapter_flow_layout:
+                        startActivity(new Intent(MainActivity.this, AdapterFlowLayoutActivity.class));
                         return true;
                 }
                 return false;
             }
         });
-        adapter = new CheeseAdapter(new CheeseAdapter.Listener() {
-            @Override
-            public void onItemClicked(Cheese cheese) {
-
-            }
-        });
+        adapter = new CheeseAdapter(listener);
         adapterLinearLayout.setAdapter(adapter);
 
         checkBoxAnimateLayoutChanges.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -106,7 +108,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         checkBoxAnimateLayoutChanges.setChecked(true);
-
-        adapter.setData(Cheeses.getRandomCheeses(10));
     }
 }

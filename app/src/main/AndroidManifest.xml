@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CustomAdapterLayoutActivity"/>
+        <activity android:name=".AdapterFlowLayoutActivity"/>
     </application>
 
 </manifest>

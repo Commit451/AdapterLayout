@@ -25,6 +25,6 @@ public class CheeseViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Cheese cheese) {
-        title.setText(cheese.getName());
+        title.setText(cheese.name);
     }
 }
