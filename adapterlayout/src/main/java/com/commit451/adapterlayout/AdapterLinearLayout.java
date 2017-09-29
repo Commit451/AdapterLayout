@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
  */
 public class AdapterLinearLayout extends LinearLayout {
 
-    private AdapterLayoutDelegate mAdapterLayoutDelegate;
+    private AdapterLayoutDelegate adapterLayoutDelegate;
 
     public AdapterLinearLayout(Context context) {
         super(context);
@@ -37,23 +37,23 @@ public class AdapterLinearLayout extends LinearLayout {
     }
 
     public void setAdapter(RecyclerView.Adapter adapter) {
-        if (mAdapterLayoutDelegate == null) {
-            mAdapterLayoutDelegate = new AdapterLayoutDelegate(this);
+        if (adapterLayoutDelegate == null) {
+            adapterLayoutDelegate = new AdapterLayoutDelegate(this);
         }
-        mAdapterLayoutDelegate.setAdapter(adapter);
+        adapterLayoutDelegate.setAdapter(adapter);
     }
 
     public RecyclerView.Adapter getAdapter() {
-        if (mAdapterLayoutDelegate != null) {
-            return mAdapterLayoutDelegate.getAdapter();
+        if (adapterLayoutDelegate != null) {
+            return adapterLayoutDelegate.getAdapter();
         }
         return null;
     }
 
     @Nullable
     public RecyclerView.ViewHolder getViewHolderAt(int index) {
-        if (mAdapterLayoutDelegate != null) {
-            return mAdapterLayoutDelegate.getViewHolderAt(index);
+        if (adapterLayoutDelegate != null) {
+            return adapterLayoutDelegate.getViewHolderAt(index);
         }
         return null;
     }

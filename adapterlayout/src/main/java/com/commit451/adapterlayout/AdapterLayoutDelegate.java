@@ -12,8 +12,8 @@ import android.view.ViewGroup;
  */
 public class AdapterLayoutDelegate {
 
-    private RecyclerView.Adapter mAdapter;
-    private ViewGroup mViewGroup;
+    private RecyclerView.Adapter adapter;
+    private ViewGroup viewGroup;
 
     /**
      * Checks for if the data changes and changes the views accordingly
@@ -24,30 +24,35 @@ public class AdapterLayoutDelegate {
             super.onChanged();
             //too general, we just have to completely recreate
             recreateViews();
+            reindex();
         }
 
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount) {
             super.onItemRangeChanged(positionStart, itemCount);
             updateViews(positionStart, itemCount, null);
+            reindex();
         }
 
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount, Object payload) {
             super.onItemRangeChanged(positionStart, itemCount, payload);
             updateViews(positionStart, itemCount, payload);
+            reindex();
         }
 
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
             super.onItemRangeInserted(positionStart, itemCount);
             addViews(positionStart, itemCount);
+            reindex();
         }
 
         @Override
         public void onItemRangeRemoved(int positionStart, int itemCount) {
             super.onItemRangeRemoved(positionStart, itemCount);
             removeViews(positionStart, itemCount);
+            reindex();
         }
 
         @Override
@@ -55,6 +60,7 @@ public class AdapterLayoutDelegate {
             super.onItemRangeMoved(fromPosition, toPosition, itemCount);
             //TODO this should probably be smarter and just move relevant views
             recreateViews();
+            reindex();
         }
     };
 
@@ -64,7 +70,7 @@ public class AdapterLayoutDelegate {
      * @param viewGroup the ViewGroup which will have views added and removed from
      */
     public AdapterLayoutDelegate(ViewGroup viewGroup) {
-        mViewGroup = viewGroup;
+        this.viewGroup = viewGroup;
     }
 
     /**
@@ -73,16 +79,16 @@ public class AdapterLayoutDelegate {
      * @param adapter the adapter
      */
     public void setAdapter(@Nullable RecyclerView.Adapter adapter) {
-        if (mAdapter != null) {
+        if (this.adapter != null) {
             try {
-                mAdapter.unregisterAdapterDataObserver(mObserver);
+                this.adapter.unregisterAdapterDataObserver(mObserver);
             } catch (Exception ignored) {
             }
         }
 
-        mAdapter = adapter;
-        if (mAdapter != null) {
-            mAdapter.registerAdapterDataObserver(mObserver);
+        this.adapter = adapter;
+        if (this.adapter != null) {
+            this.adapter.registerAdapterDataObserver(mObserver);
         }
         recreateViews();
     }
@@ -93,7 +99,7 @@ public class AdapterLayoutDelegate {
      * @return the adapter
      */
     public RecyclerView.Adapter getAdapter() {
-        return mAdapter;
+        return adapter;
     }
 
     /**
@@ -104,7 +110,7 @@ public class AdapterLayoutDelegate {
      */
     @Nullable
     public RecyclerView.ViewHolder getViewHolderAt(int index) {
-        View view = mViewGroup.getChildAt(index);
+        View view = viewGroup.getChildAt(index);
         if (view == null) {
             return null;
         }
@@ -119,29 +125,29 @@ public class AdapterLayoutDelegate {
     }
 
     private void addViewAt(int index) {
-        addViewAt(mAdapter.getItemViewType(index), index);
+        addViewAt(adapter.getItemViewType(index), index);
     }
 
     private void addViewAt(int viewType, int index) {
-        RecyclerView.ViewHolder viewHolder = mAdapter.onCreateViewHolder(mViewGroup, viewType);
+        RecyclerView.ViewHolder viewHolder = adapter.onCreateViewHolder(viewGroup, viewType);
         //setting the lib to min 4.0 to avoid leaks from doing this
         viewHolder.itemView.setTag(R.id.adapter_layout_list_holder, viewHolder);
         viewHolder.itemView.setTag(R.id.adapter_layout_list_view_type, viewType);
         viewHolder.itemView.setTag(R.id.adapter_layout_list_position, index);
-        mViewGroup.addView(viewHolder.itemView);
-        mAdapter.onBindViewHolder(viewHolder, index);
+        viewGroup.addView(viewHolder.itemView);
+        adapter.onBindViewHolder(viewHolder, index);
     }
 
     private void updateViews(int positionStart, int itemCount, @Nullable Object payload) {
         final int end = positionStart + itemCount;
         for (int i = positionStart; i < end; i++) {
             RecyclerView.ViewHolder viewHolder = getViewHolderAt(i);
-            mAdapter.onBindViewHolder(viewHolder, i);
+            adapter.onBindViewHolder(viewHolder, i);
         }
     }
 
     private void removeViews(int positionStart, int itemCount) {
-        mViewGroup.removeViews(positionStart, itemCount);
+        viewGroup.removeViews(positionStart, itemCount);
     }
 
     /**
@@ -149,26 +155,26 @@ public class AdapterLayoutDelegate {
      * prefer to just adjust the views that were changed or removed
      */
     private void recreateViews() {
-        if (mAdapter == null) {
-            mViewGroup.removeAllViews();
+        if (adapter == null) {
+            viewGroup.removeAllViews();
             return;
         }
         int i;
-        for (i = 0; i < mAdapter.getItemCount(); i++) {
-            int viewType = mAdapter.getItemViewType(i);
+        for (i = 0; i < adapter.getItemCount(); i++) {
+            int viewType = adapter.getItemViewType(i);
             //This means the view could already exist
-            if (i < mViewGroup.getChildCount()) {
-                View child = mViewGroup.getChildAt(i);
+            if (i < viewGroup.getChildCount()) {
+                View child = viewGroup.getChildAt(i);
                 Integer savedViewType = (Integer) child.getTag(R.id.adapter_layout_list_view_type);
                 RecyclerView.ViewHolder savedViewHolder = (RecyclerView.ViewHolder) child.getTag(R.id.adapter_layout_list_holder);
 
                 if (savedViewType != null && savedViewType == viewType && savedViewHolder != null) {
                     //perfect, it exists and is the right type, so just bind it
-                    mAdapter.onBindViewHolder(savedViewHolder, i);
+                    adapter.onBindViewHolder(savedViewHolder, i);
                 } else {
                     //it already existed, but something was wrong. So remove it and recreate it
                     addViewAt(viewType, i);
-                    mViewGroup.removeView(child);
+                    viewGroup.removeView(child);
                 }
             } else {
                 //Creating a brand new view
@@ -177,8 +183,15 @@ public class AdapterLayoutDelegate {
         }
 
         //Outside the bounds of the dataset, so remove it
-        if (i < mViewGroup.getChildCount()) {
-            mViewGroup.removeViews(i, mViewGroup.getChildCount() - i);
+        if (i < viewGroup.getChildCount()) {
+            viewGroup.removeViews(i, viewGroup.getChildCount() - i);
+        }
+    }
+
+    private void reindex() {
+        for (int i = 0; i < adapter.getItemCount(); i++) {
+            View child = viewGroup.getChildAt(i);
+            child.setTag(R.id.adapter_layout_list_position, i);
         }
     }
 }

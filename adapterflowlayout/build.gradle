@@ -22,9 +22,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.wefika:flowlayout:0.4.1'
-    provided project(':adapterlayout')
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly 'com.wefika:flowlayout:0.4.1'
+    compileOnly project(':adapterlayout')
 }
 
 apply from: 'https://raw.githubusercontent.com/Commit451/gradle-android-javadocs/1.0.0/gradle-android-javadocs.gradle'
