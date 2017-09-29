@@ -18,10 +18,12 @@ public class CheeseViewHolder extends RecyclerView.ViewHolder {
     }
 
     public TextView title;
+    public View buttonRemove;
 
     public CheeseViewHolder(View view) {
         super(view);
         title = (TextView) view.findViewById(R.id.text);
+        buttonRemove = view.findViewById(R.id.button_remove);
     }
 
     public void bind(Cheese cheese) {

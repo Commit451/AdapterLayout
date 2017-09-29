@@ -36,9 +36,13 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
     public void removeLast() {
         if (!values.isEmpty()) {
             int removeIndex = values.size() - 1;
-            values.remove(removeIndex);
-            notifyItemRemoved(removeIndex);
+            remove(removeIndex);
         }
+    }
+
+    public void remove(int index) {
+        values.remove(index);
+        notifyItemRemoved(index);
     }
 
     public void changeMiddle() {
@@ -76,6 +80,13 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseViewHolder> {
                 int position = AdapterLayout.getAdapterPosition(holder);
                 Cheese cheese = getItemAt(position);
                 listener.onItemClicked(cheese);
+            }
+        });
+        holder.buttonRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = AdapterLayout.getAdapterPosition(holder);
+                remove(position);
             }
         });
         return holder;
