@@ -15,7 +15,7 @@ and within your application `build.gradle`
 
 ```gradle
 dependencies {
-    compile 'com.github.Commit451.AdapterLayout:adapterlayout:latest.release.here@aar'
+    compile 'com.github.Commit451.AdapterLayout:adapterlayout:latest.release.here'
 }
 ```
 and for [FlowLayout](https://github.com/blazsolar/FlowLayout) support:
@@ -24,13 +24,13 @@ and for [FlowLayout](https://github.com/blazsolar/FlowLayout) support:
 dependencies {
     //add the latest of FlowLayout
     compile 'com.wefika:flowlayout:latest.release.here'
-    compile 'com.github.Commit451.AdapterLayout:adapterflowlayout:latest.release.here@aar'
+    compile 'com.github.Commit451.AdapterLayout:adapterflowlayout:latest.release.here'
 }
 ```
 and for Kotlin extensions support:
 ```gradle
 dependencies {
-    compile 'com.github.Commit451.AdapterLayout:adapterlayout-kotlin:latest.release.here@aar'
+    compile 'com.github.Commit451.AdapterLayout:adapterlayout-kotlin:latest.release.here'
 }
 ```
 
