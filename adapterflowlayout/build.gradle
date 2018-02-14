@@ -21,7 +21,6 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly 'com.wefika:flowlayout:0.4.1'
     compileOnly project(':adapterlayout')
 }

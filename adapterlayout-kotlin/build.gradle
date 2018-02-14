@@ -25,9 +25,7 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-
-    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     compileOnly project(':adapterlayout')
 }

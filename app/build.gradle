@@ -26,7 +26,6 @@ ext {
     butterknifeVersion = '8.8.1'
 }
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
     implementation "com.android.support:design:$supportLibVersion"

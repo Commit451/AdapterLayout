@@ -21,7 +21,6 @@ android {
 }
 
 dependencies {
-    api fileTree(include: ['*.jar'], dir: 'libs')
     api "com.android.support:recyclerview-v7:$supportLibVersion"
 }
 
