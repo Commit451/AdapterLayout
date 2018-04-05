@@ -15,7 +15,7 @@ and within your application `build.gradle`
 
 ```gradle
 dependencies {
-    compile 'com.github.Commit451.AdapterLayout:adapterlayout:latest.release.here'
+    implementation 'com.github.Commit451.AdapterLayout:adapterlayout:latest.release.here'
 }
 ```
 and for [FlowLayout](https://github.com/blazsolar/FlowLayout) support:
@@ -23,14 +23,14 @@ and for [FlowLayout](https://github.com/blazsolar/FlowLayout) support:
 ```gradle
 dependencies {
     //add the latest of FlowLayout
-    compile 'com.wefika:flowlayout:latest.release.here'
-    compile 'com.github.Commit451.AdapterLayout:adapterflowlayout:latest.release.here'
+    implementation 'com.wefika:flowlayout:latest.release.here'
+    implementation 'com.github.Commit451.AdapterLayout:adapterflowlayout:latest.release.here'
 }
 ```
 and for Kotlin extensions support:
 ```gradle
 dependencies {
-    compile 'com.github.Commit451.AdapterLayout:adapterlayout-kotlin:latest.release.here'
+    implementation 'com.github.Commit451.AdapterLayout:adapterlayout-kotlin:latest.release.here'
 }
 ```
 
@@ -69,7 +69,7 @@ It is simple to create your own `ViewGroup` backed by a `RecyclerView.Adapter`. 
 License
 --------
 
-    Copyright 2017 Commit 451
+    Copyright 2018 Commit 451
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
