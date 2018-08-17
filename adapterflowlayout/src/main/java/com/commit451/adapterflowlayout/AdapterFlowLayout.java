@@ -11,6 +11,7 @@ import com.wefika.flowlayout.FlowLayout;
 /**
  * {@link com.wefika.flowlayout.FlowLayout} with {@link android.support.v7.widget.RecyclerView.Adapter} support.
  */
+@SuppressWarnings("unused")
 public class AdapterFlowLayout extends FlowLayout {
 
     private AdapterLayoutDelegate adapterLayoutDelegate;

@@ -18,7 +18,7 @@ public class AdapterLayoutDelegate {
     /**
      * Checks for if the data changes and changes the views accordingly
      */
-    private RecyclerView.AdapterDataObserver mObserver = new RecyclerView.AdapterDataObserver() {
+    private RecyclerView.AdapterDataObserver observer = new RecyclerView.AdapterDataObserver() {
         @Override
         public void onChanged() {
             super.onChanged();
@@ -30,14 +30,14 @@ public class AdapterLayoutDelegate {
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount) {
             super.onItemRangeChanged(positionStart, itemCount);
-            updateViews(positionStart, itemCount, null);
+            updateViews(positionStart, itemCount);
             reindex();
         }
 
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount, Object payload) {
             super.onItemRangeChanged(positionStart, itemCount, payload);
-            updateViews(positionStart, itemCount, payload);
+            updateViews(positionStart, itemCount);
             reindex();
         }
 
@@ -58,7 +58,7 @@ public class AdapterLayoutDelegate {
         @Override
         public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
             super.onItemRangeMoved(fromPosition, toPosition, itemCount);
-            //TODO this should probably be smarter and just move relevant views
+            // this should probably be smarter and just move relevant views
             recreateViews();
             reindex();
         }
@@ -81,14 +81,14 @@ public class AdapterLayoutDelegate {
     public void setAdapter(@Nullable RecyclerView.Adapter adapter) {
         if (this.adapter != null) {
             try {
-                this.adapter.unregisterAdapterDataObserver(mObserver);
+                this.adapter.unregisterAdapterDataObserver(observer);
             } catch (Exception ignored) {
             }
         }
 
         this.adapter = adapter;
         if (this.adapter != null) {
-            this.adapter.registerAdapterDataObserver(mObserver);
+            this.adapter.registerAdapterDataObserver(observer);
         }
         recreateViews();
     }
@@ -135,13 +135,15 @@ public class AdapterLayoutDelegate {
         viewHolder.itemView.setTag(R.id.adapter_layout_list_view_type, viewType);
         viewHolder.itemView.setTag(R.id.adapter_layout_list_position, index);
         viewGroup.addView(viewHolder.itemView);
+        //noinspection unchecked
         adapter.onBindViewHolder(viewHolder, index);
     }
 
-    private void updateViews(int positionStart, int itemCount, @Nullable Object payload) {
+    private void updateViews(int positionStart, int itemCount) {
         final int end = positionStart + itemCount;
         for (int i = positionStart; i < end; i++) {
             RecyclerView.ViewHolder viewHolder = getViewHolderAt(i);
+            //noinspection unchecked
             adapter.onBindViewHolder(viewHolder, i);
         }
     }
@@ -170,6 +172,7 @@ public class AdapterLayoutDelegate {
 
                 if (savedViewType != null && savedViewType == viewType && savedViewHolder != null) {
                     //perfect, it exists and is the right type, so just bind it
+                    //noinspection unchecked
                     adapter.onBindViewHolder(savedViewHolder, i);
                 } else {
                     //it already existed, but something was wrong. So remove it and recreate it

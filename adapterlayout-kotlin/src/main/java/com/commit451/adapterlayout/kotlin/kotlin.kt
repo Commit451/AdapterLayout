@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.commit451.adapterlayout.kotlin
 
 import android.support.v7.widget.RecyclerView

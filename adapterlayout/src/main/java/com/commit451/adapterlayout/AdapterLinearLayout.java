@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
  * the good bits, and follow the convention here to create your own {@link android.support.v7.widget.RecyclerView.Adapter}
  * backed {@link android.view.ViewGroup}
  */
+@SuppressWarnings("unused")
 public class AdapterLinearLayout extends LinearLayout {
 
     private AdapterLayoutDelegate adapterLayoutDelegate;
@@ -43,6 +44,7 @@ public class AdapterLinearLayout extends LinearLayout {
         adapterLayoutDelegate.setAdapter(adapter);
     }
 
+    @Nullable
     public RecyclerView.Adapter getAdapter() {
         if (adapterLayoutDelegate != null) {
             return adapterLayoutDelegate.getAdapter();
