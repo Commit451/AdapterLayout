@@ -1,15 +1,16 @@
 package com.commit451.adapterflowlayout;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 import com.commit451.adapterlayout.AdapterLayoutDelegate;
 import com.wefika.flowlayout.FlowLayout;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
- * {@link com.wefika.flowlayout.FlowLayout} with {@link android.support.v7.widget.RecyclerView.Adapter} support.
+ * {@link com.wefika.flowlayout.FlowLayout} with {@link androidx.recyclerview.widget.RecyclerView.Adapter} support.
  */
 @SuppressWarnings("unused")
 public class AdapterFlowLayout extends FlowLayout {

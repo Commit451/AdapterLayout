@@ -1,10 +1,11 @@
 package com.commit451.adapterlayout.sample;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * The view holder related to each Cheese item
@@ -22,7 +23,7 @@ public class CheeseViewHolder extends RecyclerView.ViewHolder {
 
     public CheeseViewHolder(View view) {
         super(view);
-        title = (TextView) view.findViewById(R.id.text);
+        title = view.findViewById(R.id.text);
         buttonRemove = view.findViewById(R.id.button_remove);
     }
 

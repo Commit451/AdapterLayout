@@ -1,12 +1,12 @@
 apply plugin: 'com.github.ben-manes.versions'
 buildscript {
-    ext.kotlinVersion = '1.2.60'
+    ext.kotlinVersion = '1.2.71'
     repositories {
-        jcenter()
         google()
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.android.tools.build:gradle:3.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.20.0'
@@ -15,8 +15,9 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
         google()
+        jcenter()
+        maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 }
 
@@ -26,7 +27,6 @@ task clean(type: Delete) {
 
 ext {
     minSdkVersion = 15
-    compileSdkVersion = 27
+    compileSdkVersion = 28
     targetSdkVersion = compileSdkVersion
-    supportLibVersion = '27.1.1'
 }

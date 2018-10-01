@@ -1,13 +1,13 @@
 package com.commit451.adapterlayout;
 
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * Does all the hard to work to map a {@link android.support.v7.widget.RecyclerView.Adapter} to a
+ * Does all the hard to work to map a {@link androidx.recyclerview.widget.RecyclerView.Adapter} to a
  * {@link ViewGroup}. See {@link AdapterLinearLayout} for an example on how to create your own
  */
 public class AdapterLayoutDelegate {
@@ -103,7 +103,7 @@ public class AdapterLayoutDelegate {
     }
 
     /**
-     * Return the {@link android.support.v7.widget.RecyclerView.ViewHolder} at the specified position.
+     * Return the {@link RecyclerView.ViewHolder} at the specified position.
      *
      * @param index the position at which to get the ViewHolder
      * @return the ViewHolder at the index, or null if none exists

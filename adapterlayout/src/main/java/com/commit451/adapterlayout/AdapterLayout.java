@@ -1,6 +1,6 @@
 package com.commit451.adapterlayout;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Provides access to some of the public API of AdapterLayout in a way that will be available for any given

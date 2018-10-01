@@ -22,16 +22,10 @@ android {
     }
 }
 
-ext {
-    butterknifeVersion = '8.8.1'
-}
 dependencies {
 
-    implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.android.support:design:$supportLibVersion"
-
-    implementation "com.jakewharton:butterknife:$butterknifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+    implementation "androidx.appcompat:appcompat:1.0.0"
+    implementation "com.google.android.material:material:1.0.0"
 
     implementation 'com.wefika:flowlayout:0.4.1'
 

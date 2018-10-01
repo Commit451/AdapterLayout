@@ -3,15 +3,16 @@ package com.commit451.adapterlayout;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.Adapter;
 import android.widget.LinearLayout;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * LinearLayout with {@link Adapter} support. See {@link AdapterLayoutDelegate} for
- * the good bits, and follow the convention here to create your own {@link android.support.v7.widget.RecyclerView.Adapter}
+ * the good bits, and follow the convention here to create your own {@link RecyclerView.Adapter}
  * backed {@link android.view.ViewGroup}
  */
 @SuppressWarnings("unused")

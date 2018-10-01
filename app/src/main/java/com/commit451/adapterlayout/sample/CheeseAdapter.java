@@ -1,6 +1,5 @@
 package com.commit451.adapterlayout.sample;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -8,6 +7,8 @@ import com.commit451.adapterlayout.AdapterLayout;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Adapter for the recyclerview, which holds cheeses

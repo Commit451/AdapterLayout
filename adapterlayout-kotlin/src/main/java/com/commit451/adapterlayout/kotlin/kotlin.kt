@@ -2,7 +2,7 @@
 
 package com.commit451.adapterlayout.kotlin
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.commit451.adapterlayout.AdapterLayout
 
 fun RecyclerView.ViewHolder.getAdapterLayoutAdapterPosition(): Int {
