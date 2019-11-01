@@ -21,7 +21,9 @@ android {
 }
 
 dependencies {
-    compileOnly 'com.wefika:flowlayout:0.4.1'
+    compileOnly("com.wefika:flowlayout:0.4.1") {
+        exclude group: 'com.intellij', module: 'annotations'
+    }
     compileOnly project(':adapterlayout')
 }
 
