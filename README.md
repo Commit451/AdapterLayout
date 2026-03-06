@@ -1,36 +1,27 @@
 # AdapterLayout
 ViewGroup backed by RecyclerView.Adapter, allowing for easy data set manipulation with non recycling views. Aka RecyclerView minus the recycling.
 
-[![Build Status](https://travis-ci.org/Commit451/AdapterLayout.svg?branch=master)](https://travis-ci.org/Commit451/AdapterLayout) [![](https://jitpack.io/v/Commit451/AdapterLayout.svg)](https://jitpack.io/#Commit451/AdapterLayout)
+[![Build](https://github.com/Commit451/AdapterLayout/actions/workflows/ci.yml/badge.svg)](https://github.com/Commit451/AdapterLayout/actions/workflows/ci.yml) [![Maven Central](https://img.shields.io/maven-central/v/com.commit451.adapterlayout/adapterlayout.svg?label=Maven%20Central)](https://central.sonatype.com/search?q=g:com.commit451.adapterlayout)
 
 # Dependency
 ```gradle
-allprojects {
-    repositories {
-        maven { url "https://jitpack.io" }
-    }
-}
-```
-and within your application `build.gradle`
-
-```gradle
 dependencies {
-    implementation 'com.github.Commit451.AdapterLayout:adapterlayout:latest.release.here'
+    implementation "com.commit451.adapterlayout:adapterlayout:latest.release.here"
 }
 ```
 and for [FlowLayout](https://github.com/blazsolar/FlowLayout) support:
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout)
 ```gradle
 dependencies {
-    //add the latest of FlowLayout
-    implementation 'com.wefika:flowlayout:latest.release.here'
-    implementation 'com.github.Commit451.AdapterLayout:adapterflowlayout:latest.release.here'
+    // add the latest of FlowLayout
+    implementation "com.wefika:flowlayout:latest.release.here"
+    implementation "com.commit451.adapterlayout:adapterflowlayout:latest.release.here"
 }
 ```
 and for Kotlin extensions support:
 ```gradle
 dependencies {
-    implementation 'com.github.Commit451.AdapterLayout:adapterlayout-kotlin:latest.release.here'
+    implementation "com.commit451.adapterlayout:adapterlayout-kotlin:latest.release.here"
 }
 ```
 
