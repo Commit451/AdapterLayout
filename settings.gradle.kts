@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "AdapterLayout"
-include(":app", ":adapterlayout", ":adapterflowlayout", ":adapterlayout-kotlin")
+include(":app", ":adapterlayout", ":adapterflowlayout")

@@ -45,5 +45,4 @@ dependencies {
 
     implementation(project(":adapterlayout"))
     implementation(project(":adapterflowlayout"))
-    implementation(project(":adapterlayout-kotlin"))
 }

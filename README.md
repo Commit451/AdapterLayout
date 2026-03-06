@@ -18,12 +18,7 @@ dependencies {
     implementation "com.commit451.adapterlayout:adapterflowlayout:latest.release.here"
 }
 ```
-and for Kotlin extensions support:
-```gradle
-dependencies {
-    implementation "com.commit451.adapterlayout:adapterlayout-kotlin:latest.release.here"
-}
-```
+Kotlin extensions are included in `adapterlayout`.
 
 # Usage
 See the sample project for full usage.
