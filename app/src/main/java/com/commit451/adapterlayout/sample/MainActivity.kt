@@ -38,9 +38,9 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.change_all).setOnClickListener { adapter.changeAll() }
         findViewById<View>(R.id.set_to_5).setOnClickListener { adapter.setData(Cheeses.getRandomCheeses(5)) }
         findViewById<View>(R.id.new_adapter).setOnClickListener {
-            adapterLinearLayout.setAdapter(null)
+            adapterLinearLayout.adapter = null
             adapter = CheeseAdapter(listener)
-            adapterLinearLayout.setAdapter(adapter)
+            adapterLinearLayout.adapter = adapter
         }
         toolbar.setTitle(R.string.app_name)
         toolbar.inflateMenu(R.menu.main)
